@@ -1,0 +1,28 @@
+@startuml
+
+actor Client
+
+folder StaticAsset {
+  cloud Now
+}
+
+node Route53
+
+
+package VPC {
+  control ALB
+  package ECS {
+    node EC2a
+    node EC2b
+    node EC2n
+  }
+}
+
+
+Client -- Now
+Client -- Route53
+Client -- ALB
+ALB -- ECS
+
+@enduml
+
