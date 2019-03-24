@@ -12,6 +12,6 @@ user_names = [
 ]
 
 user_names.each_with_index do |name, i|
-  user = User.new(mail: "test#{i+1}@example.com", name: name)
+  user = User.find_or_initialize_by(mail: "test#{i+1}@example.com", name: name)
   user.save!
 end

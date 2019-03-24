@@ -46,3 +46,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # https://github.com/james2m/seedbank
 gem "seedbank"
+
+# https://github.com/cyu/rack-cors
+gem 'rack-cors', require: 'rack/cors'
