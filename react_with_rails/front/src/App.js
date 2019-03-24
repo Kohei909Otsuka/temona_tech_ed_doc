@@ -15,7 +15,7 @@ const App = () => {
   ]);
 
   useEffect(() =>{
-    fetch("http://localhost:8080/users")
+    fetch(`${process.env.REACT_APP_API_URL}/users`)
       .then(res => (res.json()))
       .then(json => {
         setUsers(json.map(u => ({id: u.id, name: u.name, mail: u.mail})));
