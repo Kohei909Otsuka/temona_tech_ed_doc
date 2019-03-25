@@ -1,5 +1,11 @@
-FROM ruby:2.5
-RUN apt-get update -qq && apt-get install -y postgresql-client
+FROM ruby:2.5.3-alpine
+RUN apk update && \
+  apk add postgresql-client && \
+  apk add --update --no-cache --virtual=build-dependencies \
+    build-base \
+    libxml2-dev \
+    libxslt-dev \
+    postgresql-dev
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
