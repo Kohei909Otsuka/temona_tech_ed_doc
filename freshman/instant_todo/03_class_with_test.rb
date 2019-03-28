@@ -79,3 +79,5 @@ if io_buffer_mock.buffer.length == 1
 else
   puts "fail"
 end
+
+# +a append
