@@ -1,0 +1,46 @@
+@startuml
+
+class Todo {
+  id
+  name
+}
+
+class TodoStorageGenerator {
+  storage_kind[csv | json | db]
+  generate
+}
+note left of TodoStorageGenerator
+  generate: storage_kindに応じて
+  TodoStorage interfaceを実装した
+  クラスのオブジェクトを返す
+end note
+
+class TodoList {
+  stroge
+  all()
+  append(todo)
+  update(id, todo)
+  remove(id)
+  close()
+}
+
+interface TodoStorage {
+  read()
+  write(todos)
+}
+
+class TodoCsvStorage {
+}
+class TodoJsonStorage {
+}
+class TodoDbStorage {
+}
+
+Todo <-- TodoStorage
+TodoStorageGenerator -up-> TodoCsvStorage
+TodoStorageGenerator -up-> TodoJsonStorage
+TodoStorageGenerator -up-> TodoDbStorage
+TodoStorage -- TodoCsvStorage
+TodoStorage -- TodoJsonStorage
+TodoStorage -- TodoDbStorage
+@enduml
