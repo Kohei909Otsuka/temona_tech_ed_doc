@@ -1,7 +1,13 @@
 require_relative "todo_storage_generator"
 require_relative "todo_list"
 
-MODES = ["list", "append", "update", "remove"]
+MODES = [
+  "list",
+  "append",
+  "update",
+  "remove",
+  "search"
+]
 
 sg = TodoStorageGenerator.new(ENV["STORAGE"])
 errs = sg.errs
@@ -40,6 +46,11 @@ loop do
       puts "todo not found for given id"
       next
     end
+  when MODES[4]
+    puts "enter keyword to search"
+    keyword = gets.chomp
+    puts "search result ids"
+    puts list.search(keyword)
   else
     puts "Warning! mode must be one of #{MODES.join(", ")}"
     next

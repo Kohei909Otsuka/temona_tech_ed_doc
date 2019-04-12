@@ -89,4 +89,10 @@ class TestTodoList < Minitest::Test
     @list.close
   end
 
+  def test_search
+    assert_equal([1], @list.search("first"))
+    assert_equal([2], @list.search("second"))
+    assert_equal([1, 2], @list.search("todo"))
+  end
+
 end
