@@ -6,7 +6,9 @@ class TodoList
     @list = @storage.read.map do |hash|
       Todo.new(hash[:id], hash[:name])
     end
-    cal_and_set_for_search
+
+    set_next_id
+    set_search_index
   end
 
   def all
@@ -14,17 +16,17 @@ class TodoList
   end
 
   def append(name)
-    @list << Todo.new(@list.length + 1, name)
-    cal_and_set_for_search
+    @list << Todo.new(@next_id, name)
+    set_search_index
+    set_next_id
   end
 
   def update(id, name)
-    # index見つける
     target_index = find_index_by_id(id)
     return false if target_index.nil?
     todo = @list[target_index]
     todo.name = name
-    cal_and_set_for_search
+    set_search_index
     return true
   end
 
@@ -32,7 +34,7 @@ class TodoList
     target_index = find_index_by_id(id)
     return false if target_index.nil?
     @list.delete_at(target_index)
-    cal_and_set_for_search
+    set_search_index
     return true
   end
 
@@ -44,14 +46,22 @@ class TodoList
 
   def search(keyword)
     keyword = keyword.chomp
-    p @inverted_index
-    ids = @inverted_index[keyword] || []
+    p @search_index
+    ids = @search_index[keyword] || []
     return ids
   end
 
   private
 
-  def cal_and_set_for_search
+  def set_next_id
+    if @list.length == 0
+      @next_id = 1
+    else
+      @next_id = @list.map(&:id).sort.last + 1
+    end
+  end
+
+  def set_search_index
     # NOTE: searchのために空白区切りの転置indexを先に準備しておく
     # 例えば下記のような２つのタスクが合った場合
     #   1. call mom
@@ -76,7 +86,7 @@ class TodoList
         end
       end
     end
-    @inverted_index = tmp_index
+    @search_index = tmp_index
   end
 
   def find_index_by_id(id)

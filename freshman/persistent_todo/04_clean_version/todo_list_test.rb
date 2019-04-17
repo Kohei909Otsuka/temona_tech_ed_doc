@@ -1,4 +1,3 @@
-require "csv"
 require "minitest/autorun"
 require_relative "todo_list"
 # See http://docs.seattlerb.org/minitest/
@@ -90,9 +89,23 @@ class TestTodoList < Minitest::Test
   end
 
   def test_search
+    # 初期状態
     assert_equal([1], @list.search("first"))
     assert_equal([2], @list.search("second"))
     assert_equal([1, 2], @list.search("todo"))
+
+    # 追加した後
+    @list.append("third")
+    assert_equal([3], @list.search("third"))
+
+   # 更新した後
+    @list.update(3, "abcd")
+    assert_equal([], @list.search("third"))
+    assert_equal([3], @list.search("abcd"))
+
+   # 削除した後
+    @list.remove(2)
+    assert_equal([], @list.search("second"))
   end
 
 end
