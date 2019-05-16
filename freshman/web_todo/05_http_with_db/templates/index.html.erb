@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <link rel="icon" href="data:,">
+    <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+  </head>
+  <body>
+    <h1>index page</h1>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>deadline</th>
+      </tr>
+      <% todos.each do |todo| %>
+        <tr>
+          <td><%= todo.id %></td>
+          <td><%= todo.name %></td>
+          <td><%= todo.deadline.to_s %></td>
+        </tr>
+      <% end %>
+    </table>
+    <a href="/todos/new">create todo</a>
+  </body>
+</html>
