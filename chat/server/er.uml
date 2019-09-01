@@ -1,0 +1,47 @@
+@startuml
+
+class User {
+  id
+  name
+  password
+}
+
+class Room {
+  id
+  name
+}
+
+class UserRoom {
+  id
+  user_id
+  room_id
+}
+
+class Msg {
+  id
+  content
+  user_id
+  room_id
+}
+
+class UnreadMsg {
+  id
+  msg_id
+  room_id
+  user_id
+}
+note right of UnreadMsg
+room_idは非正規化
+end note
+
+User "1" -up- "*" UserRoom
+User "1" -up- "*" Msg
+User "1" -up- "*" UnreadMsg
+
+Room "1" -- "*" UserRoom
+Room "1" -- "*" Msg
+Room "1" -up- "*" UnreadMsg
+
+Msg "1" -- "*" UnreadMsg
+
+@enduml
