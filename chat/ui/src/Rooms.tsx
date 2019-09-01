@@ -6,6 +6,25 @@ const Wrapper = styled.div`
   flex: 1;
 `;
 
+const rooms = [
+  {
+    id: 1,
+    name: 'マイチャット'
+  },
+  {
+    id: 2,
+    name: '哲学科'
+  },
+  {
+    id: 3,
+    name: 'Github Notification'
+  },
+  {
+    id: 4,
+    name: 'Circle CI'
+  }
+];
+
 const Rooms: React.FC = () => {
   return (
     <Wrapper>
