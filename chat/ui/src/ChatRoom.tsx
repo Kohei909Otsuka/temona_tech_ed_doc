@@ -1,15 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import ChatRoomHeader from './ChatRoomHeader';
+import ChatRoomMsg from './ChatRoomMsg';
+import ChatRoomText from './ChatRoomText';
 
 const Wrapper = styled.div`
-  background-color: #ecf7c1;
   flex: 3;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ChatRoom: React.FC = () => {
   return (
     <Wrapper>
-      <div>chat room</div>
+      <ChatRoomHeader />
+      <ChatRoomMsg />
+      <ChatRoomText />
     </Wrapper>
   );
 };
