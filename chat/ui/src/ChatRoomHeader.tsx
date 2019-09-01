@@ -4,12 +4,21 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   background-color: #ddedbe;
   flex: 1;
+  padding: 0 10px 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-const ChatRoomHeader: React.FC = () => {
+type Props = {
+  name: string;
+};
+
+const ChatRoomHeader: React.FC<Props> = (props: Props) => {
+  const { name } = props;
   return (
     <Wrapper>
-      <div>chat room header</div>
+      <div>{name}</div>
     </Wrapper>
   )
 };
