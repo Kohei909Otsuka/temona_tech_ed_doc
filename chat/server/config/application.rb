@@ -36,5 +36,6 @@ module Myapp
 
     # added by kohei
     config.autoload_paths << Rails.root.join("lib")
+    config.middleware.use ActionDispatch::Cookies
   end
 end
