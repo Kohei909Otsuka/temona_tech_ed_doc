@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     )
 
     if r.success?
-      render json: r.data, status: :created
+      render json: UserSerializer.new(r.data).serializable_hash,
+        status: :created
       return
     end
 

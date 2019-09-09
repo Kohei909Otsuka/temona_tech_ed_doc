@@ -14,10 +14,15 @@ RSpec.describe "/users", type: :request do
           email: "kohei@example.com",
           password: "password-00"
         }
-      json_hash = JSON.parse(response.body)
 
       expect(response).to have_http_status :created
       expect(User.count).to eq 1
+
+      json_hash = JSON.parse(response.body, symbolize_names: true)
+      expect(json_hash[:data][:attributes]).to eq(
+        name: "kohei",
+        email: "kohei@example.com"
+      )
     end
 
     it "returns 422 unprocessable_entity when fail" do
