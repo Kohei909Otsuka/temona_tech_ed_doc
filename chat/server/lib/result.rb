@@ -1,8 +1,9 @@
 class Result
-  attr_reader :errs
+  attr_reader :errs, :data
 
-  def initialize(errs=[])
+  def initialize(errs=[], data = nil)
     @errs = errs
+    @data = data
   end
 
   def success?

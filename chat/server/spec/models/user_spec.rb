@@ -78,4 +78,34 @@ RSpec.describe User, type: :model do
       check_register(r, false)
     end
   end
+
+  describe "self.login" do
+    before do
+      @user = described_class
+        .register("kohei", "kohei@example.com", "password-00")
+        .data
+      allow(SecureRandom).to receive(:uuid)
+        .and_return("some-uuid")
+    end
+
+    it "returns true when user found" do
+      r = described_class.login("kohei@example.com", "password-00")
+      expect(r.success?).to eq true
+      expect(r.data.id).to eq @user.id
+      expect(r.data.session_id).to eq "some-uuid"
+    end
+
+    it "returns false when email wrong" do
+      r = described_class.login("otsuka@example.com", "password-00")
+      expect(r.success?).to eq false
+      expect(r.data).to eq nil
+    end
+
+    it "returns false when password wrong" do
+      r = described_class.login("kohei@example.com", "password-99")
+      expect(r.success?).to eq false
+      expect(r.data).to eq nil
+    end
+
+  end
 end

@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :msgs
   has_many :unread_msgs
 
+  attr_accessor :session_id
+
   validates :name, presence: true
 
   validates :email,
@@ -19,13 +21,30 @@ class User < ApplicationRecord
       return Result.new(password_errs)
     end
 
-    hashed_password = Digest::SHA256.hexdigest(password)
-    user = User.new(name: name, email: email, hashed_password: hashed_password)
+    user = User.new(name: name, email: email, hashed_password: hash(password))
     if user.save
-      return Result.new
+      return Result.new([], user)
     else
       return Result.new(user.errors.full_messages)
     end
+  end
+
+  def self.login(email, password)
+    user = User.find_by(
+      email: email,
+      hashed_password: hash(password)
+    )
+    if user
+      session_id = SecureRandom.uuid
+      user.session_id = session_id
+      r = SessionStorage.set(session_id, user.id)
+      if !r.success?
+        return Result.new(["セッション情報の保存に失敗しました"])
+      end
+      return Result.new([], user)
+    end
+
+    return Result.new(["emailかパスワードが間違っています"])
   end
 
   private
@@ -47,5 +66,9 @@ class User < ApplicationRecord
     end
 
     return errs
+  end
+
+  def self.hash(password)
+    return Digest::SHA256.hexdigest(password)
   end
 end
