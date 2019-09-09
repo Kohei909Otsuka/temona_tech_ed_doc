@@ -106,6 +106,23 @@ RSpec.describe User, type: :model do
       expect(r.success?).to eq false
       expect(r.data).to eq nil
     end
+  end
+
+  describe "#logout" do
+    let(:session_id) {"some-session-id"}
+    before do
+      @user = described_class
+        .register("kohei", "kohei@example.com", "password-00")
+        .data
+      @user.session_id = session_id
+      SessionStorage.set(session_id, @user.id)
+    end
+
+    it "return true and rm session when key found" do
+      r = @user.logout
+      expect(r.success?).to eq true
+      expect(SessionStorage.get(session_id).data).to eq nil
+    end
 
   end
 end

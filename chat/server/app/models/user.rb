@@ -47,6 +47,14 @@ class User < ApplicationRecord
     return Result.new(["emailかパスワードが間違っています"])
   end
 
+  def logout
+    r = SessionStorage.rm(session_id)
+    if r.success?
+      return Result.new
+    end
+    return Result.new(["セッション情報の削除に失敗しました"])
+  end
+
   private
 
   def self.validate_password(password)
