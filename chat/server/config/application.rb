@@ -37,5 +37,16 @@ module Myapp
     # added by kohei
     config.autoload_paths << Rails.root.join("lib")
     config.middleware.use ActionDispatch::Cookies
+
+    # https://github.com/cyu/rack-cors#configuration
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:3030'
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head],
+          credentials: true
+      end
+    end
   end
 end

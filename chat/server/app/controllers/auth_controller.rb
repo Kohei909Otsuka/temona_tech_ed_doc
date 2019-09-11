@@ -6,7 +6,7 @@ class AuthController < ApplicationController
     r = User.login(login_params[:email], login_params[:password])
     if r.success?
       cookies[:session_id] = r.data.session_id
-      head :ok
+      render json: {}, status: :ok
       return
     end
 
@@ -17,7 +17,7 @@ class AuthController < ApplicationController
     r = @current_user.logout
     if r.success?
       cookies.delete(:session_id)
-      head :ok
+      render json: {}, status: :ok
       return
     end
 
