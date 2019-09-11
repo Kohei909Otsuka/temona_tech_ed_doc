@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   EMAIL_FORMAT = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   PASSWORD_FORMAT = /\A[a-zA-Z0-9_-]{9,}\Z/
+  has_many :user_rooms
   has_many :rooms, through: :user_rooms
   has_many :msgs
   has_many :unread_msgs

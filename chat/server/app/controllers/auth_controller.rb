@@ -1,5 +1,4 @@
 class AuthController < ApplicationController
-  include ActionController::Cookies
 
   skip_before_action :set_current_user, only: [:create]
 

@@ -19,7 +19,7 @@ RSpec.describe "/users", type: :request do
       expect(User.count).to eq 1
 
       json_hash = JSON.parse(response.body, symbolize_names: true)
-      expect(json_hash[:data][:attributes]).to eq(
+      expect(json_hash[:data][:attributes].slice(:name, :email)).to eq(
         name: "kohei",
         email: "kohei@example.com"
       )
