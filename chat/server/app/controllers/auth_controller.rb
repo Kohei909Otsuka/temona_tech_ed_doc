@@ -5,7 +5,10 @@ class AuthController < ApplicationController
   def create
     r = User.login(login_params[:email], login_params[:password])
     if r.success?
-      cookies[:session_id] = r.data.session_id
+      cookies[:session_id] = {
+        value: r.data.session_id,
+        httponly: false
+      }
       render json: {}, status: :ok
       return
     end

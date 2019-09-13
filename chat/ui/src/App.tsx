@@ -2,9 +2,12 @@ import React from 'react';
 import { useRoutes } from 'hookrouter';
 import Main from './Main';
 import Login from './Login';
+import auth  from './Auth';
+
+const AuthedMain = auth(Main);
 
 const routes = {
-  "/": () => <Main />,
+  "/": () => <AuthedMain />,
   "/login": () => <Login />
 };
 
