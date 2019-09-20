@@ -17,7 +17,7 @@ const base = (path, method, params = {}) => {
   };
 
   if (method !== "GET") {
-    fetchOption.body = JSON.stringify.params;
+    fetchOption.body = JSON.stringify(params);
   }
 
   const baseUrl = "http://localhost:8080"

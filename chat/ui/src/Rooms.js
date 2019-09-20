@@ -28,7 +28,7 @@ const Rooms: React.FC = () => {
         <Room
           key={room.id}
           name={room.name}
-          unread={0}
+          unread={room.unread}
         />
       ))}
     </Wrapper>
