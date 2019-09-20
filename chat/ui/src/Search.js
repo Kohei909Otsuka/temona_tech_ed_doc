@@ -9,7 +9,7 @@ const Input = styled.input`
   display: block;
 `;
 
-const Search: React.FC = () => {
+const Search = () => {
   return (
     <div>
       <Input placeholder="Search"/>

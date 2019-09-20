@@ -15,7 +15,7 @@ const Btn = styled.button`
   flex: 1;
 `;
 
-const ChatRoomText: React.FC = () => {
+const ChatRoomText = () => {
   const [text, setText] = useState("");
 
   return (

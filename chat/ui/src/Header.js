@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <Wrapper>
       <LeftHeader />

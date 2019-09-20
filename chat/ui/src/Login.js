@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import wfetch from './util/wfetch';
 
-const submit = (email: string, password: string) => {
+const submit = (email, password) => {
   wfetch.post("/login", {email, password})
     .then(json => console.log(json))
 };
 
-const Login: React.FC = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

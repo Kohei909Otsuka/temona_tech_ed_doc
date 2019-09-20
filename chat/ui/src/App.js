@@ -11,7 +11,7 @@ const routes = {
   "/login": () => <Login />
 };
 
-const App: React.FC = () => {
+const App = () => {
   const routeResult = useRoutes(routes);
   return routeResult;
 };

@@ -10,18 +10,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-type Msg = {
-  id: number,
-  content: string,
-  userId: number,
-};
-
-type Props = {
-  currentUserId: number,
-  msgs: Array<Msg>,
-};
-
-const ChatRoomMsgs: React.FC<Props> = (props: Props) => {
+const ChatRoomMsgs = (props) => {
   const { msgs, currentUserId } = props;
   return (
     <Wrapper>

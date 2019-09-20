@@ -42,7 +42,7 @@ const room = {
   ]
 };
 
-const ChatRoom: React.FC = () => {
+const ChatRoom = () => {
   return (
     <Wrapper>
       <ChatRoomHeader name={room.name}/>

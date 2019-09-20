@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const RightHeader: React.FC = () => {
+const RightHeader = () => {
   return (
     <Wrapper>
       <Search />

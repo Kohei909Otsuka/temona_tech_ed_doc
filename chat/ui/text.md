@@ -12,7 +12,7 @@ docker run \
   -it node:12.2.0-alpine \
   /bin/sh -c \
   "npm install -g create-react-app@3.0.1 && \
-  create-react-app . --typescript"
+  create-react-app ."
 
 # Dockerfileの追加
 echo 'FROM node:12.2.0-alpine' >> Dockerfile

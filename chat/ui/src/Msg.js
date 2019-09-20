@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface WrapperStyle {
-  mine: boolean;
-};
-
 // https://saruwakakun.com/html-css/reference/speech-bubble
-const Wrapper = styled.div<WrapperStyle>`
+const Wrapper = styled.div`
   margin-top: 20px;
   padding: 5px 10px;
   min-width: 120px;
@@ -16,12 +12,7 @@ const Wrapper = styled.div<WrapperStyle>`
   align-self: ${props => props.mine ? "flex-start" : "flex-end"};
 `;
 
-type Props = {
-  content: string,
-  mine: boolean,
-};
-
-const Msg: React.FC<Props> = (props: Props) => {
+const Msg = (props) => {
   const {content, mine} = props;
 
   return (

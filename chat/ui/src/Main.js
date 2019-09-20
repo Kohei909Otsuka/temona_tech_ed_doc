@@ -9,7 +9,7 @@ const RootWrapper = styled.div`
   height: calc(100vh - 50px);
 `;
 
-const Main: React.FC = () => {
+const Main= () => {
   return (
     <div>
       <Header />

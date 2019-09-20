@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
 `;
 
-const Menu: React.FC = () => {
+const Menu = () => {
   return (
     <Wrapper>
       <select

@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-interface WrapperStyle {
-  focus: boolean;
-};
-
-const Wrapper = styled.div<WrapperStyle>`
+const Wrapper = styled.div`
   height: 60px;
   display: flex;
   align-items: center;
@@ -14,14 +10,9 @@ const Wrapper = styled.div<WrapperStyle>`
   background: ${props => props.focus ? "red" : ""};
 `;
 
-type Props = {
-  name: string;
-  unread: number;
-};
-
 const MaxNameLength:number = 20;
 
-const Room: React.FC<Props> = (props: Props) => {
+const Room = (props: Props) => {
   const { name, unread } = props;
   const [focus, setFocus] = useState(false);
 

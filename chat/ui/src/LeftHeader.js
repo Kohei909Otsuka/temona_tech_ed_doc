@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   flex: 1;
 `;
 
-const LeftHeader: React.FC = () => {
+const LeftHeader = () => {
   return (
     <Wrapper />
   );

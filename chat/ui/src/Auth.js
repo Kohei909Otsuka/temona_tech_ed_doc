@@ -2,12 +2,12 @@ import React from 'react';
 
 // https://riptutorial.com/reactjs/example/30238/higher-order-component-that-checks-for-authentication
 
-const getCookieByKey = (key:string):string => {
+const getCookieByKey = (key) => {
   const pattern = new RegExp("(?:(?:^|.*;s*)" + key + "s*=s*([^;]*).*$)|^.*$/");
   return document.cookie.replace(pattern, "$1");
 };
 
-const authed = ():boolean => (
+const authed = () => (
   getCookieByKey("session_id") !== ""
 );
 

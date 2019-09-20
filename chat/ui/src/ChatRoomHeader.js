@@ -10,11 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-type Props = {
-  name: string;
-};
-
-const ChatRoomHeader: React.FC<Props> = (props: Props) => {
+const ChatRoomHeader = (props) => {
   const { name } = props;
   return (
     <Wrapper>
