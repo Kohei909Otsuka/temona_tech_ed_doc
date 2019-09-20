@@ -1,7 +1,10 @@
 class RoomsController < ApplicationController
   def index
     rooms = @current_user.rooms
-    hash = RoomSerializer.new(rooms).serializable_hash
-    render json: hash, status: :ok
+    rs = RoomSerializer.new(rooms, {
+      params: {current_user_id: @current_user.id}
+    })
+
+    render json: rs.serializable_hash, status: :ok
   end
 end
