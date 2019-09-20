@@ -5,7 +5,7 @@
 // TODO: deploy後、https, jsを提供するドメインと、APIを提供するドメインが違う場合のチェック
 
 const base = (path, method, params = {}) => {
-  const fetchOption = {
+  let fetchOption = {
     method: method,
     mode: "cors",
     credentials: "include",
@@ -13,8 +13,11 @@ const base = (path, method, params = {}) => {
       "Content-Type": "application/json; charset=utf-8",
       'Accept': 'application/json'
     },
-    body: JSON.stringify(params),
   };
+
+  if (method !== "GET") {
+    fetchOption.body = JSON.stringify.params;
+  }
 
   const baseUrl = "http://localhost:8080"
 
