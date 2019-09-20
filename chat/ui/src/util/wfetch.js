@@ -1,3 +1,4 @@
+import camelcaseKeys from 'camelcase-keys';
 // fetchをwrapして共通化します
 // wrapped fetch => wfetch
 
@@ -23,6 +24,7 @@ const base = (path, method, params = {}) => {
 
   return fetch(baseUrl + path, fetchOption)
     .then(res => res.json())
+    .then(json => camelcaseKeys(json))
 };
 
 const wfetch = {
